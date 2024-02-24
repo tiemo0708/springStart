@@ -21,5 +21,27 @@ public class HelloController {
         return "hello-template";
     }
 
+    @GetMapping("hello-string")
+    @ResponseBody //http body부에 데이터를 직접 반환
+    public String helloString(@RequestParam("name") String name){
+        return  "hello " + name; //hello spring"
+    }
+    //데이터를 받을때
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name){
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+    static class Hello{
+        private String name;
 
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 }

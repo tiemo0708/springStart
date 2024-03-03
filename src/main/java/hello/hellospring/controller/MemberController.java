@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class MemberController {
     private final MemberService memberService;
 
-    @Autowired //스프링 컨테이너에 있는 멤버 서ql스를 가져다 연결
+    @Autowired //스프링 컨테이너에 있는 멤버 서비스를 가져다 연결
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }

@@ -5,8 +5,11 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -23,11 +26,18 @@ public class MemberController {
 
     @PostMapping("/members/new") //요청 데이터 처리 메시지 바디를 통해 서버로 요청 데이터 전달
 
-    public  String create(MemberForm form){
+    public String create(MemberForm form){
         Member member = new Member();
         member.setName(form.getName());
-
         memberService.join(member);
         return "redirect:/"; //홈화면 이동
     }
+
+    @GetMapping("/members")
+    public String List(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
+    }
+
 }

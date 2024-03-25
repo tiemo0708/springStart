@@ -29,6 +29,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");
 
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", member.getName());
 
